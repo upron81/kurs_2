@@ -42,13 +42,13 @@ class Db:
     def delete_model(self):
         pass
     
+
 def main():
     db = Db()
     while True:
         if db.db_file:
             db.get_data()
         command = input(">>> ").strip().split()
-        #print(command)
         match command:
             case ['db', filename]:
                 if not os.path.exists(filename): 
