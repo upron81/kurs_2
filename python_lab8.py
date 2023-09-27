@@ -1,8 +1,9 @@
 from dataclasses import dataclass
 import os
-import yaml
+from dataclasses_json import dataclass_json
 
 
+@dataclass_json
 @dataclass
 class Event:
     udk: str = ''
@@ -14,8 +15,8 @@ class Event:
 
 
 class Db:
-    data: list[Event] = []
     model = Event
+    data: list[model] = []
     filename = ''
     db_file = ''
 
@@ -26,11 +27,11 @@ class Db:
     def get_data(self):
         with open(self.filename, 'r') as db_file:
             self.db_file = self.filename
-            self.data = yaml.safe_load(db_file)
+            self.data = self.model.schema().loads(self.data, many=True)
     
     def set_data(self):
         with open(self.db_file, 'w') as db_file:
-            yaml.dump(self.data, db_file)    
+            db_file.write(self.model.schema().dumps(self.data, many=True))    
     
     def create_model(self):
         new_model = Event()
@@ -45,14 +46,19 @@ class Db:
 
 def main():
     db = Db()
+    
     while True:
-        if db.db_file:
+        if db.filename:
             db.get_data()
+            print('Load data')
+            print(type(db.data))
+            print('END DATA')
+            
         command = input(">>> ").strip().split()
         match command:
             case ['db', filename]:
                 if not os.path.exists(filename): 
-                    open(filename, 'x').close()
+                    open(filename, 'w').write('{}').close()
                 db.set_file(filename)
             
             case ['getall']:
