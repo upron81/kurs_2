@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ConsoleApp1</name>
+    </assembly>
+    <members>
+        <member name="T:GeometryLibrary.Square">
+            <summary>
+            Представляет квадрат с указанной длиной стороны.
+            </summary>
+        </member>
+        <member name="M:GeometryLibrary.Square.#ctor(System.Double,System.Double,System.Double)">
+            <summary>
+            Инициализирует новый экземпляр класса Square с указанной длиной стороны.
+            </summary>
+            <param name="sideLength">Длина стороны квадрата.</param>
+        </member>
+        <member name="M:GeometryLibrary.Square.IsValid">
+            <summary>
+            Проверяет, является ли квадрат допустимой формы.
+            </summary>
+            <returns>True, если квадрат допустимой формы, в противном случае - False.</returns>
+        </member>
+        <member name="M:GeometryLibrary.Square.CalculateArea">
+            <summary>
+            Вычисляет площадь квадрата.
+            </summary>
+            <returns>Площадь квадрата.</returns>
+            <exception cref="T:System.InvalidOperationException">Вызывается, если квадрат недопустимой формы.</exception>
+        </member>
+        <member name="M:GeometryLibrary.Square.CalculatePerimeter">
+            <summary>
+            Вычисляет периметр квадрата.
+            </summary>
+            <returns>Периметр квадрата.</returns>
+            <exception cref="T:System.InvalidOperationException">Вызывается, если квадрат недопустимой формы.</exception>
+        </member>
+        <member name="M:GeometryLibrary.Square.ContainsPoint(System.Double,System.Double)">
+            <summary>
+            Проверяет, содержит ли квадрат указанную точку.
+            </summary>
+            <param name="x">Координата X точки.</param>
+            <param name="y">Координата Y точки.</param>
+            <returns>True, если точка находится внутри квадрата, в противном случае - False.</returns>
+            <exception cref="T:System.InvalidOperationException">Вызывается, если квадрат недопустимой формы.</exception>
+        </member>
+        <member name="M:GeometryLibrary.Square.IsOnBoundary(System.Double,System.Double)">
+            <summary>
+            Проверяет, находится ли точка на границе квадрата.
+            </summary>
+            <param name="x">Координата X точки.</param>
+            <param name="y">Координата Y точки.</param>
+            <returns>True, если точка находится на границе квадрата, в противном случае - False.</returns>
+            <exception cref="T:System.InvalidOperationException">Вызывается, если квадрат недопустимой формы.</exception>
+        </member>
+        <member name="T:Program">
+            <summary>
+            Это главный класс приложения, который предоставляет возможность пользователю вводить данные
+            и выполнять операции с квадратом.
+            </summary>
+        </member>
+        <member name="M:Program.Main">
+            <summary>
+            Точка входа в приложение.
+            </summary>
+        </member>
+    </members>
+</doc>
