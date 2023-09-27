@@ -28,7 +28,7 @@ class Db:
         with open(self.filename, 'r') as db_file:
             self.db_file = self.filename
             if not os.path.exists(self.filename): 
-                    open(self.filename, 'x').close()
+                open(self.filename, 'x').close()
             self.data = self.model.schema().loads(self.data, many=True)
     
     def set_data(self):
@@ -43,9 +43,16 @@ class Db:
         self.data.append(new_model)
             
     def delete_model(self, index: int):
-        if index>=0 and index<len(self.data):
-            del self.data[index]
-    
+        try:
+           del self.data[index]
+        except:
+            print(f"Нет элемента с индексом {index}!")
+
+    def update_model(self, index: int, field: str, new_value):
+        try:
+            self.data[index].__dict__[field] = new_value
+        except:
+            print('Ошибка')
 
 def main():
     db = Db()
