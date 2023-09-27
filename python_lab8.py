@@ -1,5 +1,5 @@
-from dataclasses import dataclass
 import os
+from dataclasses import dataclass
 from dataclasses_json import dataclass_json
 
 
@@ -20,7 +20,6 @@ class Db:
     filename = ''
     db_file = ''
 
-    
     def set_file(self, filename):
         self.filename = filename
         
@@ -54,6 +53,7 @@ class Db:
         except:
             print('Ошибка')
 
+
 def main():
     db = Db()
     
@@ -68,16 +68,14 @@ def main():
         match command:
             case ['db', filename]:
                 pass
-            
-            case ['getall']:
+            case ['read']:
                 print(db.data)
-            
             case ['create']:
                 db.create_model()
-
-            case ['delete', index]:
+            case ['delete', index]:                db.delete_model(int(index))
                 db.delete_model(int(index))
-            
+            case ['update', index, field]:
+                db.update_model(int(index), field)
             case ['exit']:
                 exit()
 
