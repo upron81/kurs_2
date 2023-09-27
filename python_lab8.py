@@ -6,12 +6,12 @@ from dataclasses_json import dataclass_json
 @dataclass_json
 @dataclass
 class Event:
-    udk: str = ''
-    name: str = ''
-    type_: str = 'ert'
-    date: str = ''
+    udk: str = 'удк'
+    name: str = 'название'
+    type_: str = 'тип'
+    date: str = 'дату'
     number_people: int = 0
-    lastnames: str = ''
+    lastnames: str = 'фамилию'
 
 
 class Db:
@@ -42,8 +42,9 @@ class Db:
             new_model.__dict__[field] = func_convert[str(type(new_model.__getattribute__(field)))](input(f'Введите {field}: '))
         self.data.append(new_model)
             
-    def delete_model(self):
-        pass
+    def delete_model(self, index: int):
+        if index>=0 and index<len(self.data):
+            del self.data[index]
     
 
 def main():
