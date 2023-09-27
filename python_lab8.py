@@ -27,6 +27,8 @@ class Db:
     def get_data(self):
         with open(self.filename, 'r') as db_file:
             self.db_file = self.filename
+            if not os.path.exists(self.filename): 
+                    open(self.filename, 'x').close()
             self.data = self.model.schema().loads(self.data, many=True)
     
     def set_data(self):
@@ -57,9 +59,7 @@ def main():
         command = input(">>> ").strip().split()
         match command:
             case ['db', filename]:
-                if not os.path.exists(filename): 
-                    open(filename, 'w').write('{}').close()
-                db.set_file(filename)
+                pass
             
             case ['getall']:
                 print(db.data)
