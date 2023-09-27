@@ -64,7 +64,7 @@ def main():
             print(type(db.data))
             print('END DATA')
             
-        command = input(">>> ").strip().split()
+        command = [i for i in input(">>> ").split() if i]
         match command:
             case ['db', filename]:
                 pass
@@ -74,6 +74,9 @@ def main():
             
             case ['create']:
                 db.create_model()
+
+            case ['delete', index]:
+                db.delete_model(int(index))
             
             case ['exit']:
                 exit()
