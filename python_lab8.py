@@ -6,12 +6,12 @@ from db8 import Db
 @dataclass_json
 @dataclass
 class Event:
-    udk: str
-    name: str
-    type_: str
-    date: str
-    number_people: int
-    lastnames: str
+    udk: str = 'удк'
+    name: str = 'название'
+    type_: str = 'тип'
+    date: str = 'дата'
+    number_people: int = 0
+    lastnames: str = 'фамилия'
 
     class Meta:
         udk = 'удк'
@@ -36,7 +36,7 @@ def main():
                 db.set_file(filename)
                 continue
             case ['read']:
-                db.print_model
+                db.print_model()
             case ['create']:
                 db.create_model()
             case ['delete', index]:
