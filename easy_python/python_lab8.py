@@ -18,8 +18,8 @@ class Event:
         name = 'название'
         type_ = 'тип'
         date = 'дата'
-        number_people = 'количество людей'
-        lastnames = 'фамилию'
+        number_people = 'кол. людей'
+        lastnames = 'фамилия'
 
 
 def main():
