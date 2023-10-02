@@ -39,6 +39,9 @@ class Db:
             self.data[index].__dict__[field] = new_value
         except:
             print('Ошибка')
+    
+    def universum_update(self, field, func):
+        pass
 
     def print_model(self):
         print(self.data)
