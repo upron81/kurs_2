@@ -1,18 +1,25 @@
 from dataclasses import dataclass
 from dataclasses_json import dataclass_json
 from db8 import Db
-import yaml
 
 
 @dataclass_json
 @dataclass
 class Event:
-    udk: str = 'удк'
-    name: str = 'название'
-    type_: str = 'тип'
-    date: str = 'дату'
-    number_people: int = 0
-    lastnames: str = 'фамилию'
+    udk: str
+    name: str
+    type_: str
+    date: str
+    number_people: int
+    lastnames: str
+
+    class Meta:
+        udk = 'удк'
+        name = 'название'
+        type_ = 'тип'
+        date = 'дата'
+        number_people = 'количество людей'
+        lastnames = 'фамилию'
 
 
 def main():
@@ -29,7 +36,7 @@ def main():
                 db.set_file(filename)
                 continue
             case ['read']:
-                print(yaml.dump(db.data))
+                db.print_model
             case ['create']:
                 db.create_model()
             case ['delete', index]:
