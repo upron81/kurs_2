@@ -22,10 +22,10 @@ class Db:
             db_file.write(self.model.schema().dumps(self.data, many=True))    
     
     def create_model(self):
-        new_model = Event()
+        new_model = self.model()
         func_convert = {"<class 'int'>": int, "<class 'float'>": float, "<class 'bool'>": bool, "<class 'str'>": str}
         for field in new_model.__dataclass_fields__:
-            new_model.__dict__[field] = func_convert[str(type(new_model.__getattribute__(field)))](input(f'Введите {field}: '))
+            new_model.__dict__[field] = func_convert[str(type(new_model.__getattribute__(field)))](input(f'Введите {self.model.Meta.__dict__[field]}: '))
         self.data.append(new_model)
             
     def delete_model(self, index: int):
@@ -39,3 +39,6 @@ class Db:
             self.data[index].__dict__[field] = new_value
         except:
             print('Ошибка')
+
+    def print_model(self):
+        print(self.data)
