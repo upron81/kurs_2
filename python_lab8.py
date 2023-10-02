@@ -41,8 +41,8 @@ def main():
                 db.create_model()
             case ['delete', index]:
                 db.delete_model(int(index))
-            case ['update', index, field]:
-                db.update_model(int(index), field)
+            case ['update', index, field, new_value]:
+                db.update_model(int(index), field, new_value)
             case ['exit']:
                 db.set_data()
                 exit()
