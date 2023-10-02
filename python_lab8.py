@@ -26,11 +26,11 @@ class Db:
     def get_data(self):
         with open(self.filename, 'r') as db_file:
             self.db_file = self.filename
-            if not os.path.exists(self.filename): 
-                open(self.filename, 'x').close()
             self.data = self.model.schema().loads(self.data, many=True)
     
     def set_data(self):
+        if not os.path.exists(self.filename): 
+            open(self.filename, 'x').close()
         with open(self.db_file, 'w') as db_file:
             db_file.write(self.model.schema().dumps(self.data, many=True))    
     
@@ -67,12 +67,14 @@ def main():
         command = [i for i in input(">>> ").split() if i]
         match command:
             case ['db', filename]:
-                pass
+                db.set_data()
+                db.set_file(filename)
+                continue
             case ['read']:
                 print(db.data)
             case ['create']:
                 db.create_model()
-            case ['delete', index]:                db.delete_model(int(index))
+            case ['delete', index]:
                 db.delete_model(int(index))
             case ['update', index, field]:
                 db.update_model(int(index), field)
