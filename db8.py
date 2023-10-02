@@ -40,7 +40,10 @@ class Db:
         except:
             print('Ошибка')
     
-    def universum_update(self, field, func):
+    def filter_to_delete(self):
+        pass
+
+    def filter_to_print(self):
         pass
 
     def print_model(self):
