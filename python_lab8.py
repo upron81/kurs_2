@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from dataclasses_json import dataclass_json
 from db8 import Db
+import yaml
 
 
 @dataclass_json
@@ -12,6 +13,7 @@ class Event:
     date: str = 'дату'
     number_people: int = 0
     lastnames: str = 'фамилию'
+
 
 def main():
     db = Db(Event)
@@ -27,7 +29,7 @@ def main():
                 db.set_file(filename)
                 continue
             case ['read']:
-                print(db.data)
+                print(yaml.dump(db.data))
             case ['create']:
                 db.create_model()
             case ['delete', index]:
