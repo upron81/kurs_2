@@ -56,5 +56,10 @@ class Db:
             print('Ошибка')
 
     def pprint(self, data):
-        head_exp = '{:9} '*(len(self.model().__dataclass_fields__)+1)
-        print(head_exp.format(' ', *self.model().__dataclass_fields__))
+        head_exp = '{:>15}'*(len(self.model().__dataclass_fields__)+1)
+        print(head_exp.format('#', *[self.model.Meta.__dict__[field] for field in self.model().__dataclass_fields__]))
+        for index, model in enumerate(self.data):
+            print("{:>15}".format(index), end='')
+            for field in model.__dataclass_fields__:
+                print("{:>15}".format(model.__dict__[field]), end='')
+            print()
