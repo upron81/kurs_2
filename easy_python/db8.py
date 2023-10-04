@@ -29,10 +29,8 @@ class Db:
         self.data.append(new_model)
             
     def delete_model(self, index: int):
-        try:
+        if 0 <= index < len(self.data):
            del self.data[index]
-        except:
-            print(f"Нет элемента с индексом {index}!")
 
     def update_model(self, index: int, field: str, new_value):
         if 0 <= index < len(self.data) and field in self.data[index].__dict__:
