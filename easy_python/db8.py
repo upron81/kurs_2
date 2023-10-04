@@ -35,10 +35,8 @@ class Db:
             print(f"Нет элемента с индексом {index}!")
 
     def update_model(self, index: int, field: str, new_value):
-        try:
+        if 0 <= index < len(self.data) and field in self.data[index].__dict__:
             self.data[index].__dict__[field] = new_value
-        except:
-            print('Ошибка')
     
     def _filter(self, data, func, field):
         if field in self.model().__dict__:
