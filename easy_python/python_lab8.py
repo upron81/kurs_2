@@ -29,6 +29,7 @@ def main():
             db.get_data()
             
         command = [i for i in input(">>> ").split() if i]
+        
         match command:
             case ['db', filename]:
                 if db.filename:
@@ -52,10 +53,10 @@ def main():
             case ['exit']:
                 db.set_data()
                 exit()
-
+    
         if db.filename:
             db.set_data()
-        
+    
         
 if __name__ == "__main__":
     main()
