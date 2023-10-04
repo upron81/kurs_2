@@ -40,20 +40,20 @@ class Db:
         except:
             print('Ошибка')
     
-    def _filter(self, func, field):
-        return [model for model in self.data if func(model.__dict__[field])]
+    def _filter(self, data, func, field):
+        if field in self.model().__dict__:
+            return [model for model in data if func(model.__dict__[field])]
+        else:
+            return []
     
     def filter_to_delete(self, func, field):
-        try:
-            self.data = self._filter(func, field)
-        except:
-            print('Ошибка')
+        self.data = self._filter(self.data, func, field)
 
-    def filter_to_print(self, func, field):
-        try:
-            self.pprint(self._filter(func, field))
-        except:
-            print('Ошибка')
+    def filter_one_field(self, func, field):
+        self.pprint(self._filter(self.data, func, field))
+    
+    def filter_two_field(self, func, field, func2, field2):
+        self.pprint(self._filter(self._filter(self.data, func2, field2), func, field))
 
     def pprint(self, data):
         head_exp = '{:>15}'*(len(self.model().__dataclass_fields__)+1)
