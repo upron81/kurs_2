@@ -43,8 +43,12 @@ def main():
                 db.delete_model(int(index))
             case ['update', index, field, new_value]:
                 db.update_model(int(index), field, new_value)
-            case ['fildel', value]:
-                db.filter_to_delete(lambda x: x>value, number_people)
+            case ['fildel', field, value]:
+                db.filter_to_delete(lambda x: x!=value, field)
+            case ['filter', field, value]:
+                db.filter_one_field(lambda x: x==value, field)
+            case ['filter2', field, value, field2, value2]:
+                db.filter_two_field(lambda x: x==value, field, lambda x: x==value2, field2)
             case ['exit']:
                 db.set_data()
                 exit()
